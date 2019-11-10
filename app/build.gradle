@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
   compileSdkVersion 29
@@ -44,4 +47,8 @@ dependencies {
   androidTestImplementation "androidx.test.espresso:espresso-intents:${ESPRESSO_VERSION}"
   androidTestImplementation 'org.mockito:mockito-android:2.28.2'
   androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+  mavenCentral()
 }
