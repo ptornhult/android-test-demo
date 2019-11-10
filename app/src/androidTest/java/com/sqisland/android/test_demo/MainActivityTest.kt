@@ -8,11 +8,11 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import dagger.Component
+import io.mockk.every
 import org.joda.time.DateTime
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mockito
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -42,7 +42,7 @@ class MainActivityTest {
 
     @Test
     fun today() {
-        Mockito.`when`(clock.now).thenReturn(DateTime(2008, 9, 23, 0, 0, 0))
+        every { clock.getNow() } returns DateTime(2008, 9, 23, 0, 0, 0)
 
         activityRule.launchActivity(Intent())
 
