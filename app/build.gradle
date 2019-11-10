@@ -34,7 +34,7 @@ final ESPRESSO_VERSION = '3.2.0'
 
 dependencies {
   implementation "com.google.dagger:dagger:${DAGGER_VERSION}"
-  annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+  kapt "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
   compileOnly 'javax.annotation:jsr250-api:1.0'
   implementation 'joda-time:joda-time:2.10.1'
 
@@ -46,7 +46,7 @@ dependencies {
   androidTestImplementation "androidx.test.espresso:espresso-core:${ESPRESSO_VERSION}"
   androidTestImplementation "androidx.test.espresso:espresso-intents:${ESPRESSO_VERSION}"
   androidTestImplementation 'org.mockito:mockito-android:2.28.2'
-  androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+  kaptAndroidTest "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {
