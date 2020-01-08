@@ -1,20 +1,28 @@
 package com.sqisland.android.test_demo
 
 import android.app.Application
-
-import javax.inject.Singleton
-
+import android.content.Context
+import com.sqisland.android.test_demo.db.DbModule
 import dagger.Component
+import javax.inject.Singleton
 
 open class DemoApplication : Application() {
 
-    private val component = createComponent()
+    private lateinit var component: DemoComponent
+
+    override fun onCreate() {
+        super.onCreate()
+
+        component = createComponent(applicationContext)
+    }
 
     @Singleton
-    @Component(modules = [ClockModule::class])
+    @Component(modules = [ClockModule::class, DbModule::class])
     interface ApplicationComponent : DemoComponent
 
-    protected open fun createComponent(): DemoComponent = DaggerDemoComponent.builder().build()
+    protected open fun createComponent(context: Context): DemoComponent = DaggerDemoComponent.builder()
+            .dbModule(DbModule(context))
+            .build()
 
     fun component(): DemoComponent = component
 }
