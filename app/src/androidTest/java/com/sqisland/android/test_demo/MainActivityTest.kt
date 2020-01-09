@@ -2,6 +2,7 @@ package com.sqisland.android.test_demo
 
 import android.content.Intent
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -61,5 +62,22 @@ class MainActivityTest {
 
         onView(withId(R.id.date))
                 .check(matches(withText("2014-10-15")))
+    }
+
+    @Test
+    fun counter_should_increment_from_zero_and_up_when_clicked() {
+        activityRule.launchActivity(null)
+
+        onView(withId(R.id.counter))
+                .check(matches(withText("Current count: 0")))
+
+        (1..10).forEach {
+            onView(withId(R.id.counter))
+                    .perform(click())
+
+            onView(withId(R.id.counter))
+                    .check(matches(withText("Current count: $it")))
+        }
+
     }
 }
