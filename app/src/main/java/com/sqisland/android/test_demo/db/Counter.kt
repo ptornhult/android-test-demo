@@ -21,21 +21,19 @@ abstract class CounterDao {
     @Insert
     abstract suspend fun insert(counter: Counter)
 
-    @Update
-    abstract suspend fun update(counter: Counter)
+    @Query("DELETE FROM counter")
+    abstract suspend fun deleteAll()
 
-    suspend fun save(counter: Counter) {
-        if (counter.id == null) {
-            insert(counter)
-        } else {
-            update(counter)
-        }
+    @Transaction
+    open suspend fun save(counter: Counter) {
+        deleteAll()
+        insert(counter)
     }
 }
 
 @Database(entities = [Counter::class], version = 1)
 abstract class CounterDatabase : RoomDatabase() {
-    abstract fun countDao(): CounterDao
+    abstract fun counterDao(): CounterDao
 }
 
 @Module

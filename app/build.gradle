@@ -4,70 +4,74 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-  compileSdkVersion 29
-  buildToolsVersion '29.0.2'
+    compileSdkVersion 29
+    buildToolsVersion '29.0.2'
 
-  defaultConfig {
-    applicationId 'com.sqisland.android.test_demo'
-    minSdkVersion 21
-    targetSdkVersion 29
-    versionCode 1
-    versionName '1.0.0'
+    defaultConfig {
+        applicationId 'com.sqisland.android.test_demo'
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName '1.0.0'
 
-    testInstrumentationRunner 'com.sqisland.android.test_demo.MockTestRunner'
-  }
-
-  buildTypes {
-    debug {
-      testCoverageEnabled true
+        testInstrumentationRunner 'com.sqisland.android.test_demo.MockTestRunner'
     }
-  }
 
-  packagingOptions {
-    exclude 'LICENSE.txt'
-  }
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
 }
 
 final DAGGER_VERSION = '2.24'
 final RUNNER_VERSION = '1.2.0'
+final JUNIT_VERSION = '1.1.1-beta01'
 final ESPRESSO_VERSION = '3.2.0'
 final ROOM_VERSION = '2.2.3'
 
 dependencies {
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-  implementation "com.google.dagger:dagger:${DAGGER_VERSION}"
-  kapt "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
-  compileOnly 'javax.annotation:jsr250-api:1.0'
-  implementation 'joda-time:joda-time:2.10.1'
+    implementation "com.google.dagger:dagger:$DAGGER_VERSION"
+    kapt "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+    implementation 'joda-time:joda-time:2.10.1'
 
-  // Room
-  implementation "androidx.room:room-runtime:$ROOM_VERSION"
-  kapt "androidx.room:room-compiler:$ROOM_VERSION" // For Kotlin use kapt instead of annotationProcessor
-  implementation "androidx.room:room-ktx:$ROOM_VERSION" // Coroutine support
-  testImplementation "androidx.room:room-testing:$ROOM_VERSION"
+    // Room
+    implementation "androidx.room:room-runtime:$ROOM_VERSION"
+    kapt "androidx.room:room-compiler:$ROOM_VERSION"
+    // For Kotlin use kapt instead of annotationProcessor
+    implementation "androidx.room:room-ktx:$ROOM_VERSION" // Coroutine support
+    testImplementation "androidx.room:room-testing:$ROOM_VERSION"
 
-  def coreVersion = '1.2.0-rc01'
-  implementation "androidx.core:core:$coreVersion"
-  implementation "androidx.core:core-ktx:$coreVersion"
-  implementation "androidx.appcompat:appcompat:1.1.0"
+    def coreVersion = '1.2.0-rc01'
+    implementation "androidx.core:core:$coreVersion"
+    implementation "androidx.core:core-ktx:$coreVersion"
+    implementation "androidx.appcompat:appcompat:1.1.0"
 
-  def activityVersion = '1.1.0-rc01'
+    def activityVersion = '1.1.0-rc01'
 
-  // Coroutine lifecycle
-  implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-rc03"
-  implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc03"
+    // Coroutine lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-rc03"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc03"
 
-  testImplementation 'junit:junit:4.12'
-  testImplementation 'com.google.truth:truth:0.34'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'com.google.truth:truth:0.34'
 
-  androidTestImplementation "androidx.test:runner:${RUNNER_VERSION}"
-  androidTestImplementation "androidx.test:rules:${RUNNER_VERSION}"
-  androidTestImplementation "androidx.test.espresso:espresso-core:${ESPRESSO_VERSION}"
-  androidTestImplementation "androidx.test.espresso:espresso-intents:${ESPRESSO_VERSION}"
-  androidTestImplementation "io.mockk:mockk-android:1.9.2"
-  kaptAndroidTest "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
+    androidTestImplementation "androidx.test:runner:$RUNNER_VERSION"
+    androidTestImplementation "androidx.test:rules:$RUNNER_VERSION"
+    androidTestImplementation "androidx.test.ext:junit:$JUNIT_VERSION"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$JUNIT_VERSION"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_VERSION"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$ESPRESSO_VERSION"
+    androidTestImplementation "io.mockk:mockk-android:1.9.2"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
 }
 repositories {
-  mavenCentral()
+    mavenCentral()
 }

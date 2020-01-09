@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var counterDatabase: CounterDatabase
 
     private val countDao: CounterDao by lazy {
-        counterDatabase.countDao()
+        counterDatabase.counterDao()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

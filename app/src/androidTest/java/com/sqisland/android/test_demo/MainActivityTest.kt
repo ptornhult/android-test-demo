@@ -7,6 +7,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
+import com.sqisland.android.test_demo.db.MockDbModule
 import dagger.Component
 import io.mockk.every
 import org.joda.time.DateTime
@@ -27,7 +28,7 @@ class MainActivityTest {
             false)   // launchActivity. False so we can customize the intent per test method
 
     @Singleton
-    @Component(modules = [MockClockModule::class])
+    @Component(modules = [MockClockModule::class, MockDbModule::class])
     interface TestComponent : DemoComponent {
         fun inject(mainActivityTest: MainActivityTest)
     }
